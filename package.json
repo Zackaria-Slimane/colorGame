@@ -1,0 +1,18 @@
+{
+	"name": "colorGame",
+	"version": "1.0.0",
+	"description": "",
+	"main": "colorGame.js",
+	"scripts": {
+		"start": "parcel index.html"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"color": "^4.0.1"
+	},
+	"devDependencies": {
+		"parcel": "^2.0.0-beta.2"
+	}
+}
