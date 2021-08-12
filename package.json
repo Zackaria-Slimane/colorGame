@@ -2,7 +2,7 @@
 	"name": "colorGame",
 	"version": "1.0.0",
 	"description": "",
-	"main": "colorGame.js",
+	"main": "script.js",
 	"scripts": {
 		"start": "parcel index.html"
 	},

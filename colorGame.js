@@ -6,8 +6,16 @@ const colorTitle = document.querySelector(".color-string")
 const colorGrid = document.querySelector(".color-grid")
 
 // default declaration of random color
-export const defaultColor = Color(randomColor()).rgb().string()
+export const defaultColor = randomColor()
 export const hslColor = Color(defaultColor).hsl().string()
+
+export const randomColorsArray = generateRandomColors(6)
+export function pickedColor() {
+	return Math.floor(Math.random() * randomColorsArray.length)
+}
+//title rendering
+export const shownColor = randomColorsArray[pickedColor()]
+colorTitle.innerHTML = shownColor
 
 //functions
 export function randomColor() {
@@ -32,12 +40,55 @@ function generateRandomColors(number) {
 	return colorsArray
 }
 
-export const randomColorsArray = generateRandomColors(6)
+export function populateColorsGrid() {
+	colorGrid.innerHTML = ""
+	console.log(randomColorsArray)
 
-export function correctColor() {
-	let resultArray = []
-	let resultIndex = Math.floor(Math.random() * randomColorsArray.length)
-	let result = randomColorsArray[resultIndex]
-	resultArray.push(resultIndex, result)
-	return resultArray
+	// return gridArray.map((index) => {
+	// 	if (index === 2) {
+	// 		button.style.backgroundColor = Color(shownColor).rgb().string()
+	// 		return button
+	// 	} else {
+	// 		button.style.backgroundColor = similarColors(inputColor, "easy")
+	// 		return button
+	// 	}
+	// })
+
+	for (let i = 0; i < randomColorsArray.length; i++) {
+		let button = document.createElement("button")
+		let correctIndex = randomValue(4)
+		if (i === correctIndex) {
+			button.style.backgroundColor = shownColor
+			button.classList.add("correct")
+			console.log(i, "correct color")
+		} else {
+			console.log(i, "wrong color")
+			button.style.backgroundColor = similarColors(Color(shownColor), "easy")
+		}
+		// buttonsArray.push(button)
+		colorGrid.appendChild(button)
+	}
+	console.table(colorGrid.innerHTML)
+	return colorGrid
+}
+
+export function similarColors(input, setting) {
+	if (setting === "easy") {
+		let r = input.color[0] + randomValue(80)
+		let g = input.color[1] + randomValue(80)
+		let b = input.color[2] + randomValue(80)
+		return "rgb(" + r + ", " + g + ", " + b + ")"
+	}
+	if (setting === "medium") {
+		let r = input.color[0] + randomValue(50)
+		let g = input.color[1] + randomValue(50)
+		let b = input.color[2] + randomValue(50)
+		return "rgb(" + r + ", " + g + ", " + b + ")"
+	}
+	if (setting === "hard") {
+		let r = input.color[0] + randomValue(30)
+		let g = input.color[1] + randomValue(30)
+		let b = input.color[2] + randomValue(30)
+		return "rgb(" + r + ", " + g + ", " + b + ")"
+	}
 }

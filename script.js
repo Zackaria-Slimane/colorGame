@@ -1,14 +1,16 @@
+import Color from "color"
 import {
 	defaultColor,
-	colorFormatter,
 	hslColor,
-	randomColorsArray,
-	correctColor,
+	populateColorsGrid,
+	shownColor,
+	similarColors,
 } from "./colorGame.js"
 
 console.log(defaultColor)
 console.log(hslColor)
-console.log(randomColorsArray)
 
-const testing = correctColor()
-console.log(testing)
+populateColorsGrid()
+
+const test = shownColor
+console.log(test)
