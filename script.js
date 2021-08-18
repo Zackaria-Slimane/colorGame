@@ -10,7 +10,7 @@ import {
 console.log(defaultColor)
 console.log(hslColor)
 
-populateColorsGrid()
+populateColorsGrid(medium)
 
 const test = shownColor
 console.log(test)

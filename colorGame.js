@@ -18,12 +18,6 @@ export const shownColor = randomColorsArray[pickedColor()]
 colorTitle.innerHTML = shownColor
 
 //functions
-export function randomColor() {
-	let r = randomValue(256)
-	let g = randomValue(256)
-	let b = randomValue(256)
-	return "rgb(" + r + ", " + g + ", " + b + ")"
-}
 
 export function colorFormatter(colorInput, format) {
 	let color = colorInput ?? defaultColor
@@ -40,55 +34,56 @@ function generateRandomColors(number) {
 	return colorsArray
 }
 
-export function populateColorsGrid() {
+export function populateColorsGrid(setting) {
 	colorGrid.innerHTML = ""
 	console.log(randomColorsArray)
 
-	// return gridArray.map((index) => {
-	// 	if (index === 2) {
-	// 		button.style.backgroundColor = Color(shownColor).rgb().string()
-	// 		return button
-	// 	} else {
-	// 		button.style.backgroundColor = similarColors(inputColor, "easy")
-	// 		return button
-	// 	}
-	// })
-
 	for (let i = 0; i < randomColorsArray.length; i++) {
 		let button = document.createElement("button")
-		let correctIndex = randomValue(4)
+		let correctIndex = Math.floor(randomValue(5))
 		if (i === correctIndex) {
 			button.style.backgroundColor = shownColor
 			button.classList.add("correct")
 			console.log(i, "correct color")
 		} else {
 			console.log(i, "wrong color")
-			button.style.backgroundColor = similarColors(Color(shownColor), "easy")
+			button.style.backgroundColor = similarColors(Color(shownColor), setting)
+			button.classList.remove("correct")
 		}
 		// buttonsArray.push(button)
 		colorGrid.appendChild(button)
 	}
-	console.table(colorGrid.innerHTML)
 	return colorGrid
 }
 
 export function similarColors(input, setting) {
-	if (setting === "easy") {
-		let r = input.color[0] + randomValue(80)
-		let g = input.color[1] + randomValue(80)
-		let b = input.color[2] + randomValue(80)
+	if (setting === easy) {
+		let r = Math.random() * (input.color[0] + easyRange)
+		let g = Math.random() * (input.color[1] + easyRange)
+		let b = Math.random() * (input.color[2] + easyRange)
 		return "rgb(" + r + ", " + g + ", " + b + ")"
 	}
-	if (setting === "medium") {
-		let r = input.color[0] + randomValue(50)
-		let g = input.color[1] + randomValue(50)
-		let b = input.color[2] + randomValue(50)
+	if (setting === medium) {
+		let r = Math.random() * (input.color[0] + mediumRange)
+		let g = Math.random() * (input.color[1] + mediumRange)
+		let b = Math.random() * (input.color[2] + mediumRange)
 		return "rgb(" + r + ", " + g + ", " + b + ")"
 	}
-	if (setting === "hard") {
-		let r = input.color[0] + randomValue(30)
-		let g = input.color[1] + randomValue(30)
-		let b = input.color[2] + randomValue(30)
+	if (setting === hard) {
+		let r = Math.random() * (input.color[0] + hardRange)
+		let g = Math.random() * (input.color[1] + hardRange)
+		let b = Math.random() * (input.color[2] + hardRange)
 		return "rgb(" + r + ", " + g + ", " + b + ")"
 	}
 }
+
+function randomColor() {
+	let r = randomValue(256)
+	let g = randomValue(256)
+	let b = randomValue(256)
+	return "rgb(" + r + ", " + g + ", " + b + ")"
+}
+
+const easyRange = randomRanges(0, 80)
+const mediumRange = randomRanges(0, 50)
+const hardRange = randomRanges(0, 30)
