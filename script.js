@@ -1,16 +1,11 @@
-import Color from "color"
-import {
-	defaultColor,
-	hslColor,
-	populateColorsGrid,
-	shownColor,
-	similarColors,
-} from "./colorGame.js"
+import {initGame, populateColorsGrid} from "./colorGame.js"
 
-console.log(defaultColor)
-console.log(hslColor)
+const nextColorButton = document.querySelector(".nextColor-btn")
 
-populateColorsGrid(medium)
+// initGame()
 
-const test = shownColor
-console.log(test)
+nextColorButton.addEventListener("click", () => {
+	initGame()
+})
+
+populateColorsGrid(easy)
